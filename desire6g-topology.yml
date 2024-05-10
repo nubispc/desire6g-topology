@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  name: desire6g-topology
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    run: desire6g-topology
+status:
+  loadBalancer: {}
+---
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: desire6g-topology
+  name: desire6g-topology
+spec:
+  containers:
+  - image: harbor.nbfc.io/desire6g/desire6g-topology
+    name: desire6g-topology
+    ports:
+    - containerPort: 8000
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
